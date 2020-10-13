@@ -10,8 +10,10 @@
 
             robotArm.speed=380;
 
-
-            for(k = 0; k < 9; k++) {
+            for(k = 0; k < 9; k++){
+                robotArm.moveRight();
+            }
+            for(k = 0; k < 20; k++) {
                 robotArm.grab();
                 var kleur = robotArm.scan();
                 console.log(kleur)
@@ -21,7 +23,7 @@
                     robotArm.drop();
                 }
                 robotArm.drop();
-                robotArm.moveRight();
+                robotArm.moveLeft();
             }
 
             

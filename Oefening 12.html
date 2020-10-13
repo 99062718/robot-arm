@@ -7,31 +7,33 @@
             var robotArm = new RobotArm(canvas);
             robotArm.loadLevel("exercise 12");
 
-            robotArm.speed=380;
+            robotArm.speed=100;
 
-
-            var b = [9,1,0];
-            for(k = 0; k < 8; k++) {
+            var right = 9
+            var left = -1
+            for(k = 0; k < 9; k++){
                 robotArm.grab();
                 var kleur = robotArm.scan();
-                if(kleur == "red") {
-                    for(a = 0; a < b[0]; a++) {
+                if(kleur == "red"){
+                    for(i = 0; i < right; right--){
                         robotArm.moveRight();
-                        b[1] += 1
+                        left++
+                        console.log(left)
                     }
-                    b[0] -= 1
                     robotArm.drop();
-                    for(a = 0; a < b[1]; a++) {
+                    for(i = 0; i < left; left--){
                         robotArm.moveLeft();
+                        right++
+                        console.log(left)
                     }
-                    b[1] = 1
-                    b[2] += 1
-                    for(a = 0; a < b[2]; a++)
-                        robotArm.moveRight();
+                }else{
+                    robotArm.drop();
+                    robotArm.moveRight();
+                    right--
+                    left--
+                    console.log(left)
                 }
-                robotArm.drop();
-                robotArm.moveRight();
-                b[0] -= 1
+                left++
             }
 
             
