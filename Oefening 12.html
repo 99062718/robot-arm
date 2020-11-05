@@ -9,33 +9,36 @@
 
             robotArm.speed=100;
 
-            var right = 9
-            var left = -1
-            for(k = 0; k < 9; k++){
+            var currentPos = 1;
+            var lastPos = 10;
+            var moves;
+            var color;
+
+            function posCal(){
+                return lastPos - currentPos;
+            }
+
+            for(i = 0; i < 9; i++){
                 robotArm.grab();
-                var kleur = robotArm.scan();
-                if(kleur == "red"){
-                    for(i = 0; i < right; right--){
+                color = robotArm.scan();
+                if(color == "red"){
+                    moves = posCal();
+                    for(o = 0; o < moves; o++){
                         robotArm.moveRight();
-                        left++
-                        console.log(left)
+                        currentPos++;
                     }
                     robotArm.drop();
-                    for(i = 0; i < left; left--){
+                    moves--
+                    for(o = 0; o < moves; o++){
                         robotArm.moveLeft();
-                        right++
-                        console.log(left)
+                        currentPos--;
                     }
                 }else{
                     robotArm.drop();
                     robotArm.moveRight();
-                    right--
-                    left--
-                    console.log(left)
+                    currentPos++;
                 }
-                left++
             }
-
             
             robotArm.run();
         </script>
